@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Trees\BinaryTree.cs" />
+    <Compile Remove="Trees\BNode.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="BST\" />
   </ItemGroup>
 

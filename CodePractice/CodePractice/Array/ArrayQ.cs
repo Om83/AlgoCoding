@@ -40,6 +40,19 @@ namespace CodePractice
 
             return result;
         }
+
+        public static void PrintArray<T>( T[] array, string arrayName)
+        {
+            Console.Write(arrayName+" = {");
+            int i = 0;
+            int iMax = array.Length-1;
+            foreach (var item in array)
+            {
+                Console.Write(item.ToString());
+                Console.Write((i++ == iMax) ? "" : ",");
+            }
+            Console.WriteLine("}");
+        }
     }
 
     public class ArrayQTest
@@ -49,15 +62,22 @@ namespace CodePractice
             int[] A1 = { 1, 2, 4, 5, 6, 6, 10, 12 };
             int[] A2 = {2,4,5,6,6,7,8 };
             int[] A3 = { 2,2,6,6,6,9,10,11,12};
+            Console.WriteLine("Input Arrays are : ");
+            ArrayQ.PrintArray(A1,"A1");
+            ArrayQ.PrintArray(A2,"A2");
+            ArrayQ.PrintArray(A3,"A3");
+
+
             List<int> result = ArrayQ.FindIntersectingElements(A1, A2, A3);
             if(result!=null)
             {
-                Console.WriteLine("Intersecting Items are : ");
+                Console.Write("\nIntersecting Items are : ");
                 foreach (var item in result)
                 {
                     Console.Write(item.ToString() + " ");
                 }
             }
+            Console.WriteLine("\n\n************************************************************\n");
             
         }
     }

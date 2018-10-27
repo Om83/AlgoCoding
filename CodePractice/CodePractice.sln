@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodePractice", "CodePractice\CodePractice.csproj", "{86FE896C-E24E-46A8-8C52-C32BA661B102}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodePractice2", "CodePractice2\CodePractice2.csproj", "{DBB72640-D4F4-4A29-A612-3F4AFA6552F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{86FE896C-E24E-46A8-8C52-C32BA661B102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86FE896C-E24E-46A8-8C52-C32BA661B102}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86FE896C-E24E-46A8-8C52-C32BA661B102}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86FE896C-E24E-46A8-8C52-C32BA661B102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB72640-D4F4-4A29-A612-3F4AFA6552F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB72640-D4F4-4A29-A612-3F4AFA6552F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB72640-D4F4-4A29-A612-3F4AFA6552F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB72640-D4F4-4A29-A612-3F4AFA6552F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

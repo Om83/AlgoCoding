@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array\ArrayQ.cs" />
+    <Compile Include="Concurrency\FooBar.cs" />
+    <Compile Include="Concurrency\ReadWrite.cs" />
+    <Compile Include="Concurrency\ThreadingAndMutex.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Histogram\Histogram.cs" />
     <Compile Include="Matrix\Matrix.cs" />

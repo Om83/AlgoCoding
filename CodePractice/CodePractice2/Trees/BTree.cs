@@ -5,10 +5,17 @@ namespace CodePractice2
 {
     public class TreeNode
     {
-        public int data;
+        public char data;
         public TreeNode left;
         public TreeNode right;
-        public TreeNode(int x) { data = x; }
+        public TreeNode(char x) { data = x; }
+    }
+
+    public class DLLNode
+    {
+        public char data;
+        public DLLNode prev;
+        public DLLNode next;
     }
     class NodeInfo
     {
@@ -24,6 +31,8 @@ namespace CodePractice2
         static List<TreeNode> set = new List<TreeNode>();
         static Stack<TreeNode> stack = new Stack<TreeNode>();
         static string joinStr = "'";
+        static TreeNode DLLPrev = null;
+        public static TreeNode DLLHead;
 
         public static T[] SubArray<T>(this T[] data, int index, int length)
         {
@@ -32,7 +41,7 @@ namespace CodePractice2
             return result;
         }
 
-        internal static TreeNode BuildBTree(int[] preorder, int[] inorder)
+        internal static TreeNode BuildBTree(char[] preorder, char[] inorder)
         {
             TreeNode root = null;
             int i = 0;
@@ -51,16 +60,54 @@ namespace CodePractice2
             }
 
             // Generate Inorder Left and Right Subtree child
-            int[] leftInorder = inorder.SubArray(0, i);
-            int[] rightInorder = inorder.SubArray(i + 1, inorder.Length - i - 1);
+            char[] leftInorder = inorder.SubArray(0, i);
+            char[] rightInorder = inorder.SubArray(i + 1, inorder.Length - i - 1);
             // Generate PreOrder Left and Right Subtree child
-            int[] leftPreorder = preorder.SubArray(1, i);
-            int[] rightPreorder = preorder.SubArray(i + 1, preorder.Length - i - 1);
+            char[] leftPreorder = preorder.SubArray(1, i);
+            char[] rightPreorder = preorder.SubArray(i + 1, preorder.Length - i - 1);
             root.left = BuildBTree(leftPreorder, leftInorder);
             root.right = BuildBTree(rightPreorder, rightInorder);
             return root;
 
         }
+
+        //Do inorder traversal
+        //at each node set node->prev= prev; prev->next= node; prev=node;
+        //https://www.youtube.com/watch?v=FsxTX7-yhOw
+        public static void BTree2DLL(TreeNode node)
+        {
+            // Base case  
+            if (node == null)
+            {
+                return;
+            }
+
+            // Process left subtree
+            if (node.left != null)
+            {
+                BTree2DLL(node.left);
+            }
+
+            // Process Node
+            if (DLLPrev == null)
+            {
+                DLLHead = node;
+            }
+            else
+            {
+                node.left = DLLPrev;
+                DLLPrev.right = node;
+
+            }
+            DLLPrev = node;
+
+            // Process right subtree
+            if (node.right != null)
+            {
+                BTree2DLL(node.right);
+            }
+        }
+
 
         //internal static TreeNode BuildBTree(int[] preorder, int[] inorder)
         //{
@@ -108,15 +155,32 @@ namespace CodePractice2
 
         //    return root;
         //}
+
+#region PrintHelper
+
+
+        public static void PrintDLL(TreeNode node)
+        {
+            if (node == null)
+                return;
+            while(node!=null)
+            {
+                Console.Write(node.data );
+                if(node.right!=null)
+                    Console.Write(" == ");
+                node = node.right;
+            }
+        
+        }
         public static void Print(this TreeNode root, int topMargin = 2, int leftMargin = 2)
         {
             if (root == null) return;
             int rootTop = Console.CursorTop + topMargin;
             var last = new List<NodeInfo>();
-            var next = root;
+            TreeNode next = root;
             for (int level = 0; next != null; level++)
             {
-                var item = new NodeInfo { Node = next, Text = next.data.ToString(" 0 ") };
+                var item = new NodeInfo { Node = next, Text = next.data.ToString() };
                 if (level < last.Count)
                 {
                     item.StartPos = last[level].EndPos + 1;
@@ -196,19 +260,29 @@ namespace CodePractice2
             Console.ForegroundColor = Console.BackgroundColor;
             Console.BackgroundColor = color;
         }
+
+#endregion
     }
 
     public static class BTreeTest
     {
+        static TreeNode root = null;
         public static void BuildBTreeFromTwoTraversals()
         {
-            int[] inorder = new int[] { 8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15 };
-            int[] preorder = new int[] { 1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 12, 13, 7, 14, 15 };
-            Console.WriteLine("Inorder Array = { 8,4,9,2,10,5,11,1,12,6,13,3,14,7,15 }");
-            Console.WriteLine("Preorder Array = { 1,2,4,8,9,5,10,11,3,6,12,13,7,14,15 }");
+            char[] inorder = new char[] {'H','D','I','B','J','E','K','A','L','F','M','C','N','G','O'};
+            char[] preorder = new char[] {'A','B','D','H','I','E','J','K','C','F','L','M','G','N','O'};
+            Console.WriteLine("Inorder Array = {'H','D','I','B','J','E','K','A','L','F','M','C','N','G','O'}");
+            Console.WriteLine("PreorderArray={'A','B','D','H','I','E','J','K','C','F','L','M','G','N','O'}");
             Console.WriteLine("\nTree generated from PreOrder and Inorder Arrays is :");
-            BTree.Print(BTree.BuildBTree(preorder, inorder));
+            root = BTree.BuildBTree(preorder, inorder);
+            BTree.Print(root);
             Console.WriteLine("\n************************************************************\n");
+        }
+
+        public static void BuildDLLFromTree()
+        {
+            BTree.BTree2DLL(root);
+            BTree.PrintDLL(BTree.DLLHead);
         }
     }
 } 

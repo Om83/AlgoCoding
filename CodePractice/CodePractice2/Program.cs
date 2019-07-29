@@ -10,11 +10,16 @@ namespace CodePractice2
             Console.WriteLine("             Welcome to coding Practice!\n");
             Console.WriteLine("\n************************************************************\n");
 
-            MatrixTest.ElementExistsInSortedMatrix();
+            //MatrixTest.ElementExistsInSortedMatrix();
 
-            ArrayQTest.TestFindIntersectingElements();
+            //ArrayQTest.TestFindIntersectingElements();
 
-            BTreeTest.BuildBTreeFromTwoTraversals();
+            //BTreeTest.BuildBTreeFromTwoTraversals();
+            //BTreeTest.BuildDLLFromTree();
+
+            FooBarTest.PrintFooBar();
+
+            //ReadWriteTests.TestReadWrite();
 
             Console.Read();
         }
